@@ -26,7 +26,7 @@ function verResolucion(){
         document.getElementById("resultado").innerHTML = "NO";
         return;
     }
-    for (let i = 2; i <= Math.sqrt(n); i++) {
+    for (let i = 2; i <= Math.sqrt(n); i++) { // Recorre desde 2 hasta la raíz cuadrada de n 
         if (n % i === 0) {
             document.getElementById("resultado").innerHTML = "NO";
             return;

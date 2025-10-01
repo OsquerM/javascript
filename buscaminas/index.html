@@ -1,0 +1,52 @@
+<!-- Implementa el juego del buscaminas en JS.
+Para ello, se definirá un tablero, un array 2d o matriz, con 📦 y 💣 (busca el carácter especial html para imprimir ese icono).
+A continuación el usuario, introducirá una coordenada. Por ejemplo: 0,0.
+El programa mostrará si dicha coordenada está vacía 📦 o contiene una mina 💣, mostrando el tablero cambiado para dicha acción.
+ La caja está vacía! Puedes seguir jugando…
+
+💨 📦 📦
+📦 📦 📦
+📦 📦 📦
+		 
+La caja contiene una mina, GAME OVER!!
+💥 📦📦
+📦 📦 📦
+📦 📦 📦
+
+En caso de que hubiese una mina, el juego terminaría mostrando el mensaje anterior en la parte destinada a tal efecto. En caso contrario, se le pedirá al usuario otra coordenada.
+
+Adicionalmente, el juego termina si descubre todas las cajas vacías mostrando el tablero y el mensaje: No hay más cajas vacías, YOU ARE A WINNER!!!
+
+CALIFICACIÓN EXTRA: Implementa la siguiente funcionalidad.
+
+Si el usuario destapa una caja sin bomba, en vez de aparecer el símbolo correspondiente a una coordenada vacía (para el ejemplo: 💨), que aparezca el número de bombas adyacentes a dicha coordenada. -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>EJ15</title>
+    <script src="ej15.js" defer></script>
+</head>
+<body>
+    <noscript>
+        Este navegador no puede ejecutar los scripts que hay en la página. <br>
+        Te recomendamos que <b>actualices el navegador o habilites JavaScript.</b>
+    </noscript>
+
+    <h1>Actividad Evaluable:</h1>
+
+    <h3 id="enunciadoAE">
+        Si quieres ver el enunciado de la actividad evaluable pulsa el botón <b><i>"Ver enunciado"</i></b>
+    </h3>
+
+    <input type="button" value="Ver enunciado" onclick="verEnunciado()"><br><br>
+
+    <h3 id="resolucionAE">
+        Si quieres ver la resolución de la actividad evaluable pulsa el botón <b><i>"Ver resultado"</i></b>
+    </h3>
+
+    <input type="button" value="Ver resolución" onclick="verResolucion()"><br><br>
+
+    <p id="resultado" style="font-weight: bold; font-size: 1.2em;"></p>
+</body>
+</html>

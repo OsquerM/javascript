@@ -58,7 +58,7 @@ function verResolucion() {
         }
     }
 
-    alert("✅ Contraseña válida y confirmada.");
+    alert("Contraseña válida y confirmada.");
 
     // --- Login con 3 intentos ---
     let intentos = 3;

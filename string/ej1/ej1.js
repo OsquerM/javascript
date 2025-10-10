@@ -27,7 +27,7 @@ function verResolucion() {
     alert(`El correo electrónico introducido es: ${email}`);
     const resultadoElem = document.getElementById("resultado");
     if (resultadoElem) {
-        resultadoElem.innerHTML = `El correo introducido ha sido almacenado correctamente: ${email}`;
+        resultadoElem.textContent = `El correo introducido ha sido almacenado correctamente: ${email}`;
     }
 }
 

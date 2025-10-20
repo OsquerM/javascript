@@ -23,30 +23,23 @@ Si el usuario destapa una caja sin bomba, en vez de aparecer el símbolo corresp
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>EJ15</title>
-    <script src="ej15.js" defer></script>
+  <meta charset="UTF-8">
+  <title>Buscaminas en JS</title>
+  <link rel="stylesheet" href="buscaminas.css">
 </head>
 <body>
-    <noscript>
-        Este navegador no puede ejecutar los scripts que hay en la página. <br>
-        Te recomendamos que <b>actualices el navegador o habilites JavaScript.</b>
-    </noscript>
-
-    <h1>Actividad Evaluable:</h1>
-
-    <h3 id="enunciadoAE">
+<h3 id="enunciadoAE">
         Si quieres ver el enunciado de la actividad evaluable pulsa el botón <b><i>"Ver enunciado"</i></b>
     </h3>
 
     <input type="button" value="Ver enunciado" onclick="verEnunciado()"><br><br>
 
-    <h3 id="resolucionAE">
-        Si quieres ver la resolución de la actividad evaluable pulsa el botón <b><i>"Ver resultado"</i></b>
-    </h3>
+  <h2>🎮 Buscaminas en JavaScript</h2>
 
-    <input type="button" value="Ver resolución" onclick="verResolucion()"><br><br>
+  <div id="tablero"></div>
+  <p id="mensaje"></p>
+  <button onclick="verResolucion()">Iniciar Juego</button>
 
-    <p id="resultado" style="font-weight: bold; font-size: 1.2em;"></p>
+  <script src="buscaminas.js"></script>
 </body>
 </html>

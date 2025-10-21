@@ -74,8 +74,10 @@
                     break;
                 case "11":
                     // Buscar coincidencias de "ar" sin usar regex
-                    let pos = 0, coincidencias = [];
-                    while ((pos = cadena.indexOf("ar", pos)) !== -1) {
+                    let pos = 0, 
+                    coincidencias = [];
+                    while 
+                    ((pos = cadena.indexOf("ar", pos)) !== -1) {
                         coincidencias.push(pos);
                         pos += 1;
                     }
@@ -95,7 +97,8 @@
                     break;
                 case "16":
                     // Sin usar split, recorremos manualmente
-                    let palabras = [], palabra = "";
+                    let palabras = [],
+                    palabra = "";
                     for(let i=0;i<cadena.length;i++){
                         if(cadena.charAt(i)!=" "){
                             palabra += cadena.charAt(i);
@@ -123,7 +126,8 @@
                     resultado = `Cadena en minúsculas: '${cadena.toLowerCase()}'`;
                     break;
                 case "22":
-                    let mod = "", ultima="";
+                    let mod = "",
+                     ultima="";
                     for(let i=0;i<cadena.length;i++){
                         if(cadena.charAt(i)!=" " || ultima!=" "){
                             mod += cadena.charAt(i);

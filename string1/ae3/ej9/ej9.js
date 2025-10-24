@@ -52,16 +52,16 @@
                     resultado = `Cadena concatenada: "${nueva}"\n¿Se modifica la original? No, la original sigue siendo: "${cadena}"`;
                     break;
                 case "5":
-                    resultado = `¿Termina con "aro"? ${cadena.endsWith("aro")}`;
+                    resultado = `¿Termina con "aro"? ${cadena.endsWith("aro")}`; //verifica si la cadena termina con "aro"
                     break;
                 case "6":
-                    resultado = `Carácter Unicode 65: '${String.fromCharCode(65)}'`;
+                    resultado = `Carácter Unicode 65: '${String.fromCharCode(65)}'`; //Convierte el código Unicode 65 a carácter
                     break;
                 case "7":
                     resultado = `¿Contiene "lanzar"? ${cadena.includes("lanzar")}`;
                     break;
                 case "8":
-                    resultado = `Posición del primer "a": ${cadena.indexOf("a")}`;
+                    resultado = `Posición del primer "a": ${cadena.indexOf("a")}`; //Encuentra la posición del primer "a"
                     break;
                 case "9":
                     resultado = `Posición del último "a": ${cadena.lastIndexOf("a")}`;

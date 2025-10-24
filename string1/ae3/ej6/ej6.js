@@ -16,7 +16,7 @@ function comunesRecursivo(cad1, cad2, resultado = "") {
         if (char !== " " && cad2.includes(char) && !resultado.includes(char)) {
             resultado += char;
         }
-
+        //Comprueba que no sea un espacio, que el caracter esté en la segunda cadena y que no esté ya en el resultado
         return comunesRecursivo(cad1.slice(1), cad2, resultado);
     }
 function verResolucion() {

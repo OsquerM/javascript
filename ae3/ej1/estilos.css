@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+input[type="button"] {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+input[type="button"]:hover {
+    background-color: #45a049;
+}
+
+.boleto {
+    border: 2px solid #333;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.rejilla {
+    display: grid;
+    grid-template-columns: repeat(7, 40px);
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.numero {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #333;
+    background-color: #e0e0e0;
+    font-weight: bold;
+}
+
+.numero.seleccionado {
+    background-color: #2196F3;
+    color: white;
+}
+
+.reintegro {
+    font-weight: bold;
+    color: #E91E63;
+}

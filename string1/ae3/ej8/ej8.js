@@ -9,7 +9,7 @@
             document.getElementById("enunciadoAE").innerHTML = enunciadoAE;
         }
 
-        function verResolucion() {
+function verResolucion() {
     let frase = prompt("Introduce una palabra o frase:");
     if (!frase) {
         document.getElementById("resultado").innerHTML = "No has introducido ninguna frase o palabra.";

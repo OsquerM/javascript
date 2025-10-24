@@ -11,7 +11,19 @@ function verEnunciado() {
 
     document.getElementById("enunciadoAE").innerHTML = enunciadoAE;
 }
+ function contarVocales(cadena) {
+        cadena = cadena.toLowerCase();
+        const vocales = ['a', 'e', 'i', 'o', 'u'];
+        const contador = { a: 0, e: 0, i: 0, o: 0, u: 0 };
 
+        for (let letra of cadena) {
+            if (vocales.includes(letra)) { //includes comprueba si un elemento está en un array
+                contador[letra]++;
+            }
+        }
+
+        return `El número de vocales de la cadena es a:${contador.a}, e:${contador.e}, i:${contador.i}, o:${contador.o}, u:${contador.u}`;
+    }
 function verResolucion() {
     // Pedimos la cadena de caracteres
     let texto = prompt("Introduce una cadena de caracteres:");
@@ -23,19 +35,7 @@ function verResolucion() {
     }
 
     // Función para contar las vocales
-    function contarVocales(cadena) {
-        cadena = cadena.toLowerCase();
-        const vocales = ['a', 'e', 'i', 'o', 'u'];
-        const contador = { a: 0, e: 0, i: 0, o: 0, u: 0 };
-
-        for (let letra of cadena) {
-            if (vocales.includes(letra)) {
-                contador[letra]++;
-            }
-        }
-
-        return `El número de vocales de la cadena es a:${contador.a}, e:${contador.e}, i:${contador.i}, o:${contador.o}, u:${contador.u}`;
-    }
+   
 
     // Mostramos el resultado en pantalla
     document.getElementById("resultado").innerHTML = contarVocales(texto);

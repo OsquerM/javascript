@@ -32,6 +32,6 @@ function verResolucion() {
         return;
     }
 
-    let textoResultado = `${suma} (${digitos.join(" + ")})`;
+    let textoResultado = `${suma} (${digitos.join(" + ")})`; // join une los dígitos con " + "
     document.getElementById("resultado").innerHTML = `La suma de los dígitos es: ${textoResultado}`;
 }

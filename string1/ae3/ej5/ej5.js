@@ -38,6 +38,7 @@ function verEnunciado() {
         if (!/^\d$/.test(antiguedad)) {
             errores.push(`<strong>Error:</strong> Antigüedad incorrecta: "${antiguedad}". Debe ser un solo dígito.`);
         }
+        // \d es un metacarácter que representa cualquier dígito (0-9)
 
         if (errores.length > 0) {
             return errores.join("<br>");

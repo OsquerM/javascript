@@ -33,8 +33,6 @@ function verResolucion() {
         document.getElementById("resultado").innerHTML = "No has introducido ninguna cadena.";
         return;
     }
-
-    // Función para contar las vocales
    
 
     // Mostramos el resultado en pantalla

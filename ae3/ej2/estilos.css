@@ -1,0 +1,95 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+h1 {
+  color: #003366;
+  margin-bottom: 20px;
+}
+
+.control {
+  margin-bottom: 20px;
+}
+
+#numComb {
+  width: 50px;
+  padding: 5px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+button {
+  padding: 5px 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.boleto {
+  background-color: white;
+  border: 2px solid #003366;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px auto;
+  width: 420px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+  text-align: left;
+}
+
+.boleto h2 {
+  color: #003366;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+th, td {
+  border: 1px solid #003366;
+  padding: 5px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+th {
+  background-color: #cce0ff;
+}
+
+td:first-child {
+  font-weight: bold;
+}
+
+td:nth-child(2) {
+  text-align: left;
+  padding-left: 5px;
+}
+
+td:nth-child(3), td:nth-child(4), td:nth-child(5) {
+  width: 30px;
+}
+
+.pleno {
+  border: 2px solid #003366;
+  border-radius: 5px;
+  background-color: #ffe6e6;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.pleno h3 {
+  margin: 0 0 5px 0;
+  text-align: center;
+  color: #003366;
+}
+
+.pleno p {
+  margin: 3px 0;
+  font-weight: bold;
+  text-align: center;
+}

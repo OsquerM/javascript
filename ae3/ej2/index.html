@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador La Quiniela</title>
+  <link rel="stylesheet" href="estilos.css">
+  <script src="ej2.js" defer></script>
+</head>
+<body>
+  <h1>Simulador La Quiniela</h1>
+
+  <div class="control">
+    <label>Número de combinaciones (1-8): </label>
+    <input type="number" id="numComb" min="1" max="8" value="1">
+    <button id="generar">Generar</button>
+  </div>
+
+  <!-- Div que actuará como plantilla del boleto -->
+  <div id="boletos-contenedor">
+      <div class="boleto" id="boleto-template">
+          <h2>Boleto</h2>
+          <table>
+              <tr><th>#</th><th>Local vs Visitante</th><th>1</th><th>X</th><th>2</th></tr>
+              <!-- Aquí JS generará los partidos -->
+          </table>
+          <div class="pleno">
+              <h3>Pleno al 15</h3>
+              <!-- Aquí JS generará el pleno -->
+          </div>
+      </div>
+  </div>
+
+</body>
+</html>

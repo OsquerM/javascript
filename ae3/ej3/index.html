@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Loterías Académicas</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        button { margin: 5px; padding: 10px 20px; font-size: 16px; }
+        #boleto, #resultado { margin-top: 20px; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <h1>Loterías Académicas</h1>
+    <button id="btnPrimitiva">Jugar a La Primitiva</button>
+    <button id="btnQuiniela">Jugar a La Quiniela</button>
+    
+    <div id="boleto"></div>
+    <button id="btnComprobar" style="display:none;">Comprobar boleto</button>
+    <div id="resultado"></div>
+
+    <script>
+        let boletoActual = null;
+        let tipoJuego = null;
+
+        const btnPrimitiva = document.getElementById('btnPrimitiva');
+        const btnQuiniela = document.getElementById('btnQuiniela');
+        const btnComprobar = document.getElementById('btnComprobar');
+        const divBoleto = document.getElementById('boleto');
+        const divResultado = document.getElementById('resultado');
+
+        function generarBoletoPrimitiva() {
+            const numeros = new Set();
+            while (numeros.size < 6) {
+                numeros.add(Math.floor(Math.random() * 49) + 1);
+            }
+            const reintegro = Math.floor(Math.random() * 10);
+            return { numeros: Array.from(numeros).sort((a,b)=>a-b), reintegro };
+        }
+
+        function comprobarPremioPrimitiva(boleto, combinacionGanadora) {
+            const aciertos = boleto.numeros.filter(n => combinacionGanadora.numeros.includes(n)).length;
+            const reintegro = boleto.reintegro === combinacionGanadora.reintegro;
+            let premio = 0;
+
+            if (aciertos === 6 && reintegro) premio = 139838160;
+            else if (aciertos === 6) premio = 6000000;
+            else if (aciertos === 5) premio = 2330636;
+            else if (aciertos === 4) premio = 55491;
+            else if (aciertos === 3) premio = 1032;
+            else if (reintegro) premio = 57;
+
+            return { aciertos, reintegro, premio };
+        }
+
+        function generarBoletoQuiniela() {
+            const resultados = [];
+            for (let i = 0; i < 15; i++) {
+                const opciones = ['1','X','2'];
+                resultados.push(opciones[Math.floor(Math.random() * 3)]);
+            }
+            return resultados;
+        }
+
+        function comprobarPremioQuiniela(boleto, combinacionGanadora) {
+            let aciertos = 0;
+            for (let i = 0; i < boleto.length; i++) {
+                if (boleto[i] === combinacionGanadora[i]) aciertos++;
+            }
+            return { aciertos, premio: aciertos * 10 };
+        }
+
+        btnPrimitiva.addEventListener('click', () => {
+            boletoActual = generarBoletoPrimitiva();
+            tipoJuego = 'primitiva';
+            divBoleto.innerHTML = `Boleto Primitiva: ${boletoActual.numeros.join(', ')} | Reintegro: ${boletoActual.reintegro}`;
+            btnComprobar.style.display = 'inline';
+            divResultado.innerHTML = '';
+        });
+
+        btnQuiniela.addEventListener('click', () => {
+            boletoActual = generarBoletoQuiniela();
+            tipoJuego = 'quiniela';
+            divBoleto.innerHTML = `Boleto Quiniela: ${boletoActual.join(', ')}`;
+            btnComprobar.style.display = 'inline';
+            divResultado.innerHTML = '';
+        });
+
+        btnComprobar.addEventListener('click', () => {
+            if (!boletoActual) return alert('Primero genera un boleto');
+
+            if (tipoJuego === 'primitiva') {
+                const combinacionGanadora = generarBoletoPrimitiva();
+                const resultado = comprobarPremioPrimitiva(boletoActual, combinacionGanadora);
+                divResultado.innerHTML = `
+                    <strong>Combinación ganadora:</strong> ${combinacionGanadora.numeros.join(', ')} | Reintegro: ${combinacionGanadora.reintegro}<br>
+                    <strong>Aciertos:</strong> ${resultado.aciertos}, <strong>Reintegro acertado:</strong> ${resultado.reintegro}, <strong>Premio:</strong> ${resultado.premio}€
+                `;
+            } else if (tipoJuego === 'quiniela') {
+                const combinacionGanadora = generarBoletoQuiniela();
+                const resultado = comprobarPremioQuiniela(boletoActual, combinacionGanadora);
+                divResultado.innerHTML = `
+                    <strong>Combinación ganadora:</strong> ${combinacionGanadora.join(', ')}<br>
+                    <strong>Aciertos:</strong> ${resultado.aciertos}, <strong>Premio:</strong> ${resultado.premio}€
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

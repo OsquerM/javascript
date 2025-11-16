@@ -2,46 +2,54 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Loterías Académicas</title>
+    <title>Loterías </title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        button { margin: 5px; padding: 10px 20px; font-size: 16px; }
-        #boleto, #resultado { margin-top: 20px; font-size: 18px; }
+        body { font-family: Arial, sans-serif; margin: 20px; } /* Estilo básico para el cuerpo */
+        button { margin: 5px; padding: 10px 20px; font-size: 16px; } /* Estilo de los botones */
+        #boleto, #resultado { margin-top: 20px; font-size: 18px; } /* Estilo de los divs de resultados */
     </style>
 </head>
 <body>
-    <h1>Loterías Académicas</h1>
-    <button id="btnPrimitiva">Jugar a La Primitiva</button>
-    <button id="btnQuiniela">Jugar a La Quiniela</button>
-    
-    <div id="boleto"></div>
-    <button id="btnComprobar" style="display:none;">Comprobar boleto</button>
-    <div id="resultado"></div>
+    <h1>Loterías Académicas</h1> 
+
+    <button id="btnPrimitiva">Jugar a La Primitiva</button> <!-- Botón para generar boleto de Primitiva -->
+    <button id="btnQuiniela">Jugar a La Quiniela</button> <!-- Botón para generar boleto de Quiniela -->
+
+    <div id="boleto"></div> <!-- Aquí se mostrará el boleto generado -->
+    <button id="btnComprobar" style="display:none;">Comprobar boleto</button> <!-- Botón para comprobar boleto, oculto al inicio -->
+    <div id="resultado"></div> <!-- Aquí se mostrará el resultado -->
 
     <script>
-        let boletoActual = null;
-        let tipoJuego = null;
+        let boletoActual = null; // Variable donde se guarda el boleto generado
+        let tipoJuego = null; // Variable que indica si es primitiva o quiniela
 
+        // Recuperamos los elementos del DOM por su ID
         const btnPrimitiva = document.getElementById('btnPrimitiva');
         const btnQuiniela = document.getElementById('btnQuiniela');
         const btnComprobar = document.getElementById('btnComprobar');
         const divBoleto = document.getElementById('boleto');
         const divResultado = document.getElementById('resultado');
 
+        // Función para generar boleto de Primitiva
         function generarBoletoPrimitiva() {
-            const numeros = new Set();
-            while (numeros.size < 6) {
-                numeros.add(Math.floor(Math.random() * 49) + 1);
+            const numeros = new Set(); // Creamos un Set para evitar números duplicados
+            while (numeros.size < 6) { // Repetimos hasta tener 6 números
+                numeros.add(Math.floor(Math.random() * 49) + 1); // Generamos número entre 1 y 49
             }
-            const reintegro = Math.floor(Math.random() * 10);
-            return { numeros: Array.from(numeros).sort((a,b)=>a-b), reintegro };
+            const reintegro = Math.floor(Math.random() * 10); // Generamos reintegro entre 0 y 9
+
+            return { numeros: Array.from(numeros).sort((a,b)=>a-b), reintegro }; // Convertimos el Set a array y lo ordenamos
         }
 
+        // Función que comprueba el premio de Primitiva
         function comprobarPremioPrimitiva(boleto, combinacionGanadora) {
+            // Filtramos los números que coinciden entre el boleto y la combinación ganadora
             const aciertos = boleto.numeros.filter(n => combinacionGanadora.numeros.includes(n)).length;
-            const reintegro = boleto.reintegro === combinacionGanadora.reintegro;
-            let premio = 0;
 
+            const reintegro = boleto.reintegro === combinacionGanadora.reintegro; // Comprobamos si acierta el reintegro
+            let premio = 0; // Variable para el premio
+
+            // Tabla de premios según aciertos
             if (aciertos === 6 && reintegro) premio = 139838160;
             else if (aciertos === 6) premio = 6000000;
             else if (aciertos === 5) premio = 2330636;
@@ -49,55 +57,65 @@
             else if (aciertos === 3) premio = 1032;
             else if (reintegro) premio = 57;
 
-            return { aciertos, reintegro, premio };
+            return { aciertos, reintegro, premio }; // Devolvemos resultados
         }
 
+        // Genera un boleto aleatorio para la Quiniela
         function generarBoletoQuiniela() {
-            const resultados = [];
-            for (let i = 0; i < 15; i++) {
-                const opciones = ['1','X','2'];
-                resultados.push(opciones[Math.floor(Math.random() * 3)]);
+            const resultados = []; // Array vacío para los 15 partidos
+            for (let i = 0; i < 15; i++) { // Recorremos los 15 encuentros
+                const opciones = ['1','X','2']; // Posibles resultados
+                resultados.push(opciones[Math.floor(Math.random() * 3)]); // Insertamos resultado aleatorio
             }
-            return resultados;
+            return resultados; // Devolvemos boleto
         }
 
+        // Comprueba aciertos en Quiniela
         function comprobarPremioQuiniela(boleto, combinacionGanadora) {
-            let aciertos = 0;
-            for (let i = 0; i < boleto.length; i++) {
-                if (boleto[i] === combinacionGanadora[i]) aciertos++;
+            let aciertos = 0; // Contador de aciertos
+            for (let i = 0; i < boleto.length; i++) { // Recorremos cada partido
+                if (boleto[i] === combinacionGanadora[i]) aciertos++; // Sumamos si coincide
             }
-            return { aciertos, premio: aciertos * 10 };
+            return { aciertos, premio: aciertos * 10 }; // Premio de 10€ por acierto
         }
 
+        // Evento para generar boleto de Primitiva
         btnPrimitiva.addEventListener('click', () => {
-            boletoActual = generarBoletoPrimitiva();
-            tipoJuego = 'primitiva';
-            divBoleto.innerHTML = `Boleto Primitiva: ${boletoActual.numeros.join(', ')} | Reintegro: ${boletoActual.reintegro}`;
-            btnComprobar.style.display = 'inline';
-            divResultado.innerHTML = '';
+            boletoActual = generarBoletoPrimitiva(); // Generamos boleto
+            tipoJuego = 'primitiva'; // Guardamos tipo de juego
+            divBoleto.innerHTML = `Boleto Primitiva: ${boletoActual.numeros.join(', ')} | Reintegro: ${boletoActual.reintegro}`; // Mostramos boleto
+            btnComprobar.style.display = 'inline'; // Mostramos botón de comprobar
+            divResultado.innerHTML = ''; // Limpiamos resultado anterior
         });
 
+        // Evento para generar boleto de Quiniela
         btnQuiniela.addEventListener('click', () => {
-            boletoActual = generarBoletoQuiniela();
-            tipoJuego = 'quiniela';
-            divBoleto.innerHTML = `Boleto Quiniela: ${boletoActual.join(', ')}`;
-            btnComprobar.style.display = 'inline';
-            divResultado.innerHTML = '';
+            boletoActual = generarBoletoQuiniela(); // Generamos boleto
+            tipoJuego = 'quiniela'; // Guardamos tipo de juego
+            divBoleto.innerHTML = `Boleto Quiniela: ${boletoActual.join(', ')}`; // Mostramos boleto
+            btnComprobar.style.display = 'inline'; // Mostramos botón de comprobar
+            divResultado.innerHTML = ''; // Limpiamos resultado anterior
         });
 
+        // Evento para comprobar resultados
         btnComprobar.addEventListener('click', () => {
-            if (!boletoActual) return alert('Primero genera un boleto');
+            if (!boletoActual) return alert('Primero genera un boleto'); // Si no hay boleto, mensaje de alerta
 
-            if (tipoJuego === 'primitiva') {
-                const combinacionGanadora = generarBoletoPrimitiva();
-                const resultado = comprobarPremioPrimitiva(boletoActual, combinacionGanadora);
+            if (tipoJuego === 'primitiva') { // Si el juego es Primitiva
+                const combinacionGanadora = generarBoletoPrimitiva(); // Generamos combinación ganadora
+                const resultado = comprobarPremioPrimitiva(boletoActual, combinacionGanadora); // Comprobamos premio
+
+                // Mostramos resultados
                 divResultado.innerHTML = `
                     <strong>Combinación ganadora:</strong> ${combinacionGanadora.numeros.join(', ')} | Reintegro: ${combinacionGanadora.reintegro}<br>
                     <strong>Aciertos:</strong> ${resultado.aciertos}, <strong>Reintegro acertado:</strong> ${resultado.reintegro}, <strong>Premio:</strong> ${resultado.premio}€
                 `;
-            } else if (tipoJuego === 'quiniela') {
-                const combinacionGanadora = generarBoletoQuiniela();
-                const resultado = comprobarPremioQuiniela(boletoActual, combinacionGanadora);
+
+            } else if (tipoJuego === 'quiniela') { // Si el juego es Quiniela
+                const combinacionGanadora = generarBoletoQuiniela(); // Generamos combinación ganadora
+                const resultado = comprobarPremioQuiniela(boletoActual, combinacionGanadora); // Comprobamos premio
+
+                // Mostramos resultados
                 divResultado.innerHTML = `
                     <strong>Combinación ganadora:</strong> ${combinacionGanadora.join(', ')}<br>
                     <strong>Aciertos:</strong> ${resultado.aciertos}, <strong>Premio:</strong> ${resultado.premio}€
@@ -107,4 +125,4 @@
     </script>
 </body>
 </html>
-<!-- Matemáticamente es casi imposible acertar 6 números entre 49, así que en pruebas reales siempre verás 0,1,2 o 3 aciertos. -->
+<!-- Matemáticamente es casi imposible acertar 6 números entre 49 -->

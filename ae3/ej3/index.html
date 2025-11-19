@@ -39,13 +39,14 @@
             const reintegro = Math.floor(Math.random() * 10); // Generamos reintegro entre 0 y 9
 
             return { numeros: Array.from(numeros).sort((a,b)=>a-b), reintegro }; // Convertimos el Set a array y lo ordenamos
+            //Utilizido el array.from para convertir el set en array y el sort para ordenar los números de menor a mayor
         }
 
         // Función que comprueba el premio de Primitiva
         function comprobarPremioPrimitiva(boleto, combinacionGanadora) {
             // Filtramos los números que coinciden entre el boleto y la combinación ganadora
             const aciertos = boleto.numeros.filter(n => combinacionGanadora.numeros.includes(n)).length;
-
+            //inlcudes para comprobar si el número está en el array
             const reintegro = boleto.reintegro === combinacionGanadora.reintegro; // Comprobamos si acierta el reintegro
             let premio = 0; // Variable para el premio
 

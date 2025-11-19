@@ -45,7 +45,9 @@
         // Función que comprueba el premio de Primitiva
         function comprobarPremioPrimitiva(boleto, combinacionGanadora) {
             // Filtramos los números que coinciden entre el boleto y la combinación ganadora
+            // Filter devuelve un nuevo array con los elementos que cumplen la condición
             const aciertos = boleto.numeros.filter(n => combinacionGanadora.numeros.includes(n)).length;
+            //Comprobamos si n está en el array de la combinación ganadora usando el método
             //inlcudes para comprobar si el número está en el array
             const reintegro = boleto.reintegro === combinacionGanadora.reintegro; // Comprobamos si acierta el reintegro
             let premio = 0; // Variable para el premio
@@ -101,11 +103,9 @@
         // Evento para comprobar resultados
         btnComprobar.addEventListener('click', () => {
             if (!boletoActual) return alert('Primero genera un boleto'); // Si no hay boleto, mensaje de alerta
-
             if (tipoJuego === 'primitiva') { // Si el juego es Primitiva
                 const combinacionGanadora = generarBoletoPrimitiva(); // Generamos combinación ganadora
                 const resultado = comprobarPremioPrimitiva(boletoActual, combinacionGanadora); // Comprobamos premio
-
                 // Mostramos resultados
                 divResultado.innerHTML = `
                     <strong>Combinación ganadora:</strong> ${combinacionGanadora.numeros.join(', ')} | Reintegro: ${combinacionGanadora.reintegro}<br>

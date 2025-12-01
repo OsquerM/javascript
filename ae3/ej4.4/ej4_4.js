@@ -42,3 +42,5 @@ const resultado = `La fecha ${fechaUsuario} corresponde a la semana número ${ob
 
 // Mostramos el resultado en el elemento HTML con id="resultado"
 document.getElementById("resultado").textContent = resultado;
+
+//El UTC se utiliza para evitar problemas de zona horaria al calcular la semana ISO.

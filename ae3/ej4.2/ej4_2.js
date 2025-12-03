@@ -9,14 +9,16 @@ function calcularDiferencia(fecha1Str, fecha2Str) {
     }
 
     // Calcular la diferencia absoluta en milisegundos
+    // Math.abs para evitar resultados negativos, convierte cualquier valor a positivo
     const diffMs = Math.abs(fecha2 - fecha1);
 
     // Convertir a días, horas y minutos
     //1000 milisegundos * 60 segundos * 60 minutos * 24 horas
     const diffDias = Math.floor(diffMs / (1000 * 60 * 60 * 24)); //Calcular los días completos
-    const diffHoras = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); //Calcular las horas restantes
+    const diffHoras = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); //Calcular las horas restantes, usamos el módulo para obtener el resto después de quitar los días completos
     const diffMinutos = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60)); //Calcular los minutos restantes
     return `Entre ambas fechas han transcurrido ${diffDias} días, ${diffHoras} horas y ${diffMinutos} minutos.`;
+    // Hacemos modulo para obtener el resto después de quitar los días completos y las horas completas para convertirlo a ms para calcular los minutos restantes
 }
 
 // Solicitar fechas al usuario

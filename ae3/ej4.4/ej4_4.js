@@ -12,13 +12,17 @@ function obtenerSemanaISO(fechaStr) {
     const fechaUTC = new Date(Date.UTC(fecha.getFullYear(), fecha.getMonth(), fecha.getDate()));
 
     // Calcular el jueves de la semana
-    // +3 - (...) mueve cualquier día al jueves de esa semana
-    // En esta numeración, jueves siempre es 3, por eso usamos +3
-    fechaUTC.setUTCDate(fechaUTC.getUTCDate() + 3 - ((fechaUTC.getUTCDay() + 6) % 7));
-    //((fechaUTC.getUTCDay() + 6) % 7)) cambia la numeracion del día de la semana para que lunes sea 0
+    //  Al sumar 6 y hacer módulo 7, conseguimos que lunes=0, martes=1, ..., domingo=6
+    const diaSemana = (fechaUTC.getUTCDay() + 6) % 7; 
+
+    const diasParaJueves = 3 - diaSemana; 
+
+    fechaUTC.setUTCDate(fechaUTC.getUTCDate() + diasParaJueves);
+
     // Primer jueves del año 
     // Según ISO, la semana 1 es la que contiene el primer jueves del año
     const primerJueves = new Date(Date.UTC(fechaUTC.getUTCFullYear(), 0, 4));
+    // Usamos el 4 de enero porque siempre cae en la semana 1
 
     //Diferencia en milisegundos entre el jueves actual y el primer jueves del año 
     const diferencia = fechaUTC - primerJueves;
@@ -44,4 +48,4 @@ if (semana === "Fecha inválida. Use el formato YYYY/MM/DD") {
 }
 
 //El UTC se utiliza para evitar problemas de zona horaria al calcular la semana ISO.
-// Llamamos a las variables const para que no puedan ser reasignadas.
+// Llamamos a las variables const para que no puedan ser reasignadas.  
